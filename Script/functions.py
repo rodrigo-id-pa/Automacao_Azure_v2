@@ -490,3 +490,41 @@ def capturar_id(x, y, z):
                                 elif pasta_d == 'Output':
                                     id_pasta_e = pasta_3['ID'][d]
                                     id_pasta_output.append(id_pasta_e)
+
+# função para capturar o id das pasta input e output do diretorio especifico
+def capturar_id_v2(x, y, z):
+    global id_pasta_input
+    global id_pasta_output
+    root = listar_conteudo_pasta(user_id, pasta_id='root')
+    if root and 'value' in root:
+        for a, item in enumerate(root['value']):
+            pasta_a = item.get('name', '')
+            if pasta_a == x and 'folder' in item:
+                id_pasta_a = item['id']
+                pasta_1 = listar_conteudo_pasta(user_id, id_pasta_a)
+                if pasta_1 and 'value' in pasta_1:
+                    for b, item_b in enumerate(pasta_1['value']):
+                        pasta_b = item_b.get('name', '')
+                        if pasta_b == y and 'folder' in item_b:
+                            id_pasta_b = item_b['id']
+                            pasta_2 = listar_conteudo_pasta(
+                                user_id, id_pasta_b)
+                            if pasta_2 and 'value' in pasta_2:
+                                for c, item_c in enumerate(pasta_2['value']):
+                                    pasta_c = item_c.get('name', '')
+                                    if pasta_c == z and 'folder' in item_c:
+                                        id_pasta_c = item_c['id']
+                                        pasta_3 = listar_conteudo_pasta(
+                                            user_id, id_pasta_c)
+                                        if pasta_3 and 'value' in pasta_3:
+                                            for d, item_d in enumerate(pasta_3['value']):
+                                                pasta_d = item_d.get(
+                                                    'name', '')
+                                                if pasta_d == 'Input':
+                                                    id_pasta_d = item_d['id']
+                                                    id_pasta_input.append(
+                                                        id_pasta_d)
+                                                elif pasta_d == 'Output':
+                                                    id_pasta_e = item_d['id']
+                                                    id_pasta_output.append(
+                                                        id_pasta_e)
